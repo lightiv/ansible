@@ -1,1 +1,2 @@
+[remote_servers]
 185.243.215.196:22322 apache_package=apache2 php_package=libapache2-mod-php

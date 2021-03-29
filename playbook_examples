@@ -1,0 +1,95 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: create hal user
+    tags: always
+    user: 
+      name: hal
+      groups: root
+
+  - name: install apache and php
+    package: 
+      name: 
+        - "{{ apache_package }}"
+        - "{{ php_package }}"
+      state: latest
+      update_cache: yes
+
+  - name: start apache (Ubuntu)
+    tags: apache
+    service: 
+      name: apache2
+      state: started
+      enabled: yes
+    when: ansible_distribution  == "Ubuntu"
+
+  - name: change Timeout
+    tags: apache,ubuntu,apache2
+    lineinfile: 
+      path: /etc/apache2/apache2.conf
+      regexp: '^Timeout'
+      line: Timeout 500
+    when: ansible_distribution == "Ubuntu"
+    register: apache2
+
+
+  - name: restart apache2 (Ubuntu)
+    tags: apache,apache2,ubuntu
+    service: 
+      name: apache2
+      state: restarted
+    when: apache2.changed
+
+  - name: copy default html files for site
+    tags: apache,apache2,httpd
+    copy:
+      src: default_site.html
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: 0644
+
+- hosts: remote_servers
+  become: true
+  tasks:
+
+  - name: install unzip
+    package:
+      name: unzip
+
+  - name: install terraform
+    unarchive:
+      src: https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip
+      dest: /usr/local/bin
+      remote_src: yes
+      mode: 0755
+      owner: root
+      group: root
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: create hal user
+    tags: always
+    user:
+      name: hal
+      groups: root
+
+  - name: add ssh key for hal
+    tags: always
+    authorized_key:
+      user: hal
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMSjXpesRF0POY04CvUQFIrUIflTRWVKAaFzz8RZK7mk ansible"
+
+  - name: add sudoers file for hal
+    tags: always
+    copy: 
+      src: sudoer_hal
+      dest: /etc/sudoers.d/hal
+      owner: root
+      group: root
+      mode: 0440
