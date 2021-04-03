@@ -63,6 +63,14 @@
         - register-delegate-keys
         - relayer
 
+    - name: Download the Geth Ethereum Light Node 
+      get_url:
+        url: "https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.10.1-c2d2f4ed.tar.gz"
+        dest: '/home/{{ username }}/'
+        owner: '{{ username }}'
+        group: '{{ username }}'
+        mode: '0775'
+
     - name: copy file and set permissions
       copy:
         src: '/home/{{ username }}/althea-bin/{{ item }}'
@@ -76,13 +84,18 @@
         - register-delegate-keys
         - relayer
 
-    - name: Download the Althea key creation script
+    - name: Download the Althea key creation script and tools for the Gravity Bridge services files
       get_url:
-        url: https://raw.githubusercontent.com/lightiv/ansible/gravity_bridge/files/setup.sh
-        dest: '/home/{{ username }}/'
+        url: "https://raw.githubusercontent.com/lightiv/ansible/gravity_bridge/files/{{ item }}"
+        dest: '/home/{{ username }}/althea-bin'
         owner: '{{ username }}'
         group: '{{ username }}'
         mode: '0775'
+      with_items:
+        - setup.sh
+        - gravity-bridge.service
+        - geth.service
+        - orchestratord.service
 
     - name: Change to the root directory
       shell: cd ~/
