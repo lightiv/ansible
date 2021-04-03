@@ -53,13 +53,10 @@ sudo systemctl enable geth.service
 sudo systemctl start geth.service
 
 printf "\n";
-printf "$(date) *** Allow your node to completely sync befor proceeding with Enable and start the Gravity Bridge and Geth system services: *** \n";
+printf "$(date) *** Allow your node to completely sync before proceeding with Enable and start the Gravity Bridge and Geth system services: *** \n";
 
-## End this script here and continue with the next one (Step) ##
-## Create you validator before moving to the following. Put these in the next script: ##
+printf "\n";
+printf "$(date) You can view what Althea is doing by typing 'sudo journalctl -fu gravity-bridge' \n";
 
-read -sp 'Enter your MNEMONIC from above: ' MNEMONIC
-sed -i "s/^    --cosmos-phrase=.*/    --cosmos-phrase=\"$MNEMONIC\" "\\"\\"" /" /home/$USER/althea-bin/orchestratord.service
-
-read -sp 'Enter your Ethereum Delage Address from above: ' ETH_DELEGATE_ADDRESS
-sed -i "s/^    --cosmos-phrase=.*/    --cosmos-phrase=\"$MNEMONIC\" "\\"\\"" /" /home/$USER/althea-bin/orchestratord.service
+printf "\n";
+printf "$(date) Type 'althea status' + ENTER.  In the output you should see "Catching Up = False" once synced. \n";
