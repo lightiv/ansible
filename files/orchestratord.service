@@ -1,5 +1,5 @@
 [Unit]
-Description=Althea Orchestrator Daemon1
+Description=Althea Orchestrator Daemon
 After=network-online.target
 StartLimitIntervalSec=0
 
