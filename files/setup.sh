@@ -7,6 +7,19 @@ printf "#               >>  No warranty is expressed. User assumes all risk  << 
 printf "############################################################################################# \n \n \n"
 
 printf "\n";
+printf "$(date) *** Initialize the Althea directory *** \n";
+read -p 'Enter a name for your node/validator: ' MONIKER;
+
+cd $HOME
+althea init MONIKER --chain-id althea-testnet1v5
+
+# Copy the genesis.json to the .althea config directory
+printf "\n";
+printf "$(date) Copy the genesis.json to the .althea config directory. \n";
+
+sudo cp /home/$USER/althea-bin/genesis.json /home/$USER/.althea/config/genesis.json
+
+printf "\n";
 printf "$(date) *** Let create a wallet without a Ledger device *** \n";
 
 read -p 'Enter a name for your new Key: ' KEY_NAME;
@@ -28,7 +41,7 @@ printf "$(date) *** PAUSING 30 SECONDS *** Copy/Write down the displayed ADRESS 
 printf "\n";
 printf "$(date) Setting up the Geth Ethereum Light Client \n";
 
-cd ~/
+cd $HOME
 tar -xvf geth-linux-amd64-1.10.1-c2d2f4ed.tar.gz
 
 chmod +x /home/$USER/geth-linux-amd64-1.10.1-c2d2f4ed/geth
@@ -59,4 +72,4 @@ printf "\n";
 printf "$(date) You can view what Althea is doing by typing 'sudo journalctl -fu gravity-bridge' \n";
 
 printf "\n";
-printf "$(date) Type 'althea status' + ENTER.  In the output you should see "Catching Up = False" once synced. \n";
+printf "$(date) Type 'althea status' and press ENTER.  In the output you should see "Catching Up = False" once synced. \n";

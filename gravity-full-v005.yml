@@ -97,16 +97,10 @@
         - geth.service
         - orchestratord.service
 
-    - name: Change to the root directory
-      shell: cd ~/
-
-    - name: Initialize the node
-      shell: althea init '{{ username }}' -o --chain-id althea-testnet1v5
-
     - name: Download the gravity bridge genesis
       get_url:
         url: https://github.com/althea-net/althea-chain/releases/download/v0.0.5/althea-testnet1-v5-genesis.json
-        dest: '/home/{{ username }}/.althea/config/genesis.json'
+        dest: '/home/{{ username }}/althea-bin/genesis.json'
         owner: '{{ username }}'
         group: '{{ username }}'
         mode: '0775'
@@ -115,4 +109,5 @@
       debug:
         msg:
           - 'Things left to do:'
-          - '- Proceed to Step 2.  Please see the Step 2 instructions'
+          - '** Proceed to Step 2 on the remote Gravity Bridge node you are configuring. Run ~/althea-bin/setup.sh on the remote Gravity Bridge node. **'
+          - '*** Be sure to log in as the NON-ROOT user you have been using above.  This is the same user you created in the Linux Harden setup ***'
