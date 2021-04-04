@@ -120,7 +120,7 @@ In the output from the above command and look for the line ```status:``` It shou
 
 If you do not get Orchestrator going in a timely manner your will also get ```jailed```
 
-## Step 4 - Create our COSMOS and ETHEREUM delegate address. Fund them, deploy our ETHEREUM contract address and finally start Orchestrator
+## Step 4 - Create our COSMOS and ETHEREUM delegate addresses, fund them, deploy our ETHEREUM contract address and finally start Orchestrator
 
 From your Gravity Bridge node.  Finish the Gravity Bridge setup:
 ```
