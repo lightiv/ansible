@@ -65,6 +65,11 @@ sudo cp /home/$USER/althea-bin/gravity-bridge.service /lib/systemd/system/gravit
 sudo cp /home/$USER/althea-bin/geth.service /lib/systemd/system/geth.service
 
 printf "\n";
+printf "$(date) Open inbound firewall port 26656 for P2P network stability: \n";
+
+sudo ufw allow from any to any port 26656  proto tcp
+
+printf "\n";
 printf "$(date) Enable and start the Gravity Bridge and Geth system services: \n";
 
 sudo systemctl enable gravity-bridge.service
