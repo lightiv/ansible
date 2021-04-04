@@ -1,4 +1,11 @@
-# Continue Setup
+printf "############################################################################################# \n"
+printf "#     Script for installing the Althea node by Paul D. Lovette | 04-02-2021                 # \n"
+printf "#     Find me at https://skynet.paullovette.com/ or E-Mail: skynet@paullovette.com          # \n"
+printf "#     While I have tested this script and it works great on my Ubuntu 20.0.4 install        # \n"
+printf "#                                                                                           # \n"
+printf "#               >>  No warranty is expressed. User assumes all risk  <<                     # \n"
+printf "############################################################################################# \n \n \n"
+
 
 printf "\n";
 printf "$(date) Now that you have confirmed you are validating. Let's create/register our deleagate keys \n"
