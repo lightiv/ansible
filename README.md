@@ -91,7 +91,7 @@ althea tx staking create-validator \
   --gas="auto" \
   --gas-adjustment=1.5 \
   --gas-prices="0.025ualtg" \
-  --from=<MONIKER(YOUR_KEY_NAME_FROM_ABOVE>
+  --from=<KEY_NAME_FROM_STEP_2>
 ```
 
 ## Confirm that you are validating
@@ -119,3 +119,19 @@ althea query staking validator cosmosvaloper1xxxxxxxxxxxx.....xxxx
 In the output from the above command and look for the line ```status:``` It should say ```BOND_STATUS_BONDED```  If it does you are a validator and signing blocks.  If it says ```BOND_STATUS_UNBONDED``` your are jailed and not signing blocks.
 
 If you do not get Orchestrator going in a timely manner your will also get ```jailed```
+
+## Step 4 - Create our COSMOS and ETHEREUM delegate address. Fund them, deploy our ETHEREUM contract address and finally start Orchestrator
+
+From your Gravity Bridge node.  Finish the Gravity Bridge setup:
+```
+~/althea-bin/setup1.sh
+```
+
+** Answer the prompts when you get to messages below you have successfull set up a Gravity Bridge Validator node!
+
+
+If you made it to the following messages.  Congratulation.  You are Gravity Bridge Validator!
+```
+*** It is finished!  You should now have a fully running Gravity Bridge Validator configuration! ***
+The view the status of Gravity-Bridge, Orchestrator or Geth, type: sudo journal -fu <service_name> (gravity-bridge, orchestratord, or geth)
+```

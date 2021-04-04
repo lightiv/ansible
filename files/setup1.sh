@@ -63,4 +63,4 @@ printf "\n";
 printf "$(date) *** It is finished!  You should now have a fully running Gravity Bridge Validator configuration! *** \n"
 
 printf "\n";
-printf "$(date) The view the status of Gravity-Bridge, Orchestrator or Geth, type: sudo journal -fu <service_name> (gravity-bridge, orchestratord, or geth) \n"
+printf "$(date) To view the status of Gravity-Bridge, Orchestrator or Geth, type: sudo journal -fu <service_name> (gravity-bridge, orchestratord, or geth) \n"
