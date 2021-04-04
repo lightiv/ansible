@@ -1,6 +1,0 @@
-ssh_users: hal9000
-ssh_template_file: sshd_config_ubuntu.j2
-
-item: send-tokens.sh
-username:
-password:
