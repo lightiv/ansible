@@ -11,7 +11,7 @@ printf "$(date) *** Initialize the Althea directory *** \n";
 read -p 'Enter a name for your node/validator: ' MONIKER;
 
 cd $HOME
-althea init MONIKER --chain-id althea-testnet1v5
+althea init $MONIKER --chain-id althea-testnet1v5
 
 printf "\n";
 printf "$(date) Edit app.toml to prevent spam and activate the api server needed by Gravity Bridge. \n";
