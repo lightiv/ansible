@@ -13,6 +13,14 @@ read -p 'Enter a name for your node/validator: ' MONIKER;
 cd $HOME
 althea init MONIKER --chain-id althea-testnet1v5
 
+printf "\n";
+printf "$(date) Edit app.toml to prevent spam and activate the api server needed by Gravity Bridge. \n";
+sed -E -i 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.025ualtg\"/' ~/.althea/config/app.toml
+sed -E -i 's/enable = false/enable = true/' ~/.althea/config/app.toml
+sed -E -i 's/persistent_peers = \".*\"/persistent_peers = \"05ded2f258ab158c5526eb53aa14d122367115a7@testnet1.althea.net:26656\"/' ~/.althea/config/config.toml
+sed -E -i 's/pex =.*/pex = false/' ~/.althea/config/config.toml
+sed -E -i 's/max_open_connections = 3.*/max_open_connections = 20/' ~/.althea/config/config.toml
+
 # Copy the genesis.json to the .althea config directory
 printf "\n";
 printf "$(date) Copy the genesis.json to the .althea config directory. \n";
@@ -73,3 +81,6 @@ printf "$(date) You can view what Althea is doing by typing 'sudo journalctl -fu
 
 printf "\n";
 printf "$(date) Type 'althea status' and press ENTER.  In the output you should see "Catching Up = False" once synced. \n";
+
+printf "\n";
+printf "$(date) *** Once synced. type the folloiwng *** \n";
